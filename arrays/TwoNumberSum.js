@@ -9,3 +9,6 @@ function twoNumberSum(array, targetSum) {
 	}
 	return [];
 }
+
+// time: O(n)
+// space: O(n)
