@@ -1,17 +1,20 @@
 function tournamentWinner(competitions, results) {
-	let bestTeam = '';
-	let teams = {[bestTeam]: 0};
+	let highestScore = 0;
+	let winningTeam = '';
+	let scores = {};
+	
 	for (let i = 0; i < competitions.length; i++) {
-		const [homeTeam, awayTeam] = competitions[i];
-		const winningTeam = results[i] ? homeTeam : awayTeam;
-		if (!(homeTeam in teams)) teams[homeTeam] = 0;
-		if (!(awayTeam in teams)) teams[awayTeam] = 0;
-		teams[winningTeam] += 3;
-		if (teams[winningTeam] > teams[bestTeam]) {
-			bestTeam = winningTeam;
+		let [home, away] = competitions[i];
+		let winner = results[i] ? home : away;
+		if (!(winner in scores)) scores[winner] = 0;
+		scores[winner]++;
+		if (scores[winner] > highestScore) {
+			highestScore = scores[winner];
+			winningTeam = winner;
 		}
 	}
-  return bestTeam;
+	
+	return winningTeam;
 }
 
 // time: O(n)
