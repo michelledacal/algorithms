@@ -1,5 +1,6 @@
 // time: O(n)
 // space: O(n)
+// where n is the length of the array
 
 function twoNumberSum(array, targetSum) {
   // store each num in array in a hash table
@@ -19,6 +20,7 @@ function twoNumberSum(array, targetSum) {
 
 // time: O(nlog(n))
 // space: O(1)
+// where n is the length of the array
 
 function twoNumberSum(array, targetSum) {
   // sort the array

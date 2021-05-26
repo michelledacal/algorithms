@@ -1,5 +1,6 @@
 // time: O(n)
 // space: O(1)
+// where n is the length of the array
 
 function isValidSubsequence(array, sequence) {
   // one pointer on sequence
