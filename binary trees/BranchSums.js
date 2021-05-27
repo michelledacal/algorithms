@@ -6,20 +6,25 @@ class BinaryTree {
   }
 }
 
-function branchSums(root) {
-	let sums = [];
-	calculateSum(root);
-	return sums;
-	
-	function calculateSum(root, sum = 0) {
-		sum += root.value;
-		if (!root.left && !root.right) sums.push(sum);
-		if (root.left) calculateSum(root.left, sum);
-		if (root.right) calculateSum(root.right, sum);
-	}
-  
-}
-
 // time: O(n)
 // space: O(n)
 // where n is the number of nodes in the tree
+
+function branchSums(root) {
+  // add order: root, left, right
+  // add root val to sum 
+  // if left exists, add left val and continue left
+  // repeat with the right side
+  // when reaching end of node (left nor right exist), push sum to sums array
+  const sums = [];
+  branchSumHelper(root, 0);
+  return sums;
+
+  function branchSumHelper(node, sum) {
+    sum += node.value;
+    if (!node.left && !node.right) sums.push(sum);
+    if (node.left) branchSumHelper(node.left, sum);
+    if (node.right) branchSumHelper(node.right, sum);
+  }
+
+}
