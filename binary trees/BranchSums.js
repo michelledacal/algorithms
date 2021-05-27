@@ -1,11 +1,3 @@
-class BinaryTree {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
-
 // time: O(n)
 // space: O(n)
 // where n is the number of nodes in the tree
@@ -27,4 +19,12 @@ function branchSums(root) {
     if (node.right) branchSumHelper(node.right, sum);
   }
 
+}
+
+class BinaryTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
 }
