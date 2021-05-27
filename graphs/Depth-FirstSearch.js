@@ -1,3 +1,7 @@
+// time: O(v + e)
+// space: O(v)
+// where v is the number of vertices of the graph and e is the number of edges
+
 class Node {
   constructor(name) {
     this.name = name;
@@ -10,14 +14,11 @@ class Node {
   }
 
   depthFirstSearch(array) {
-		array.push(this.name);
-		this.children.forEach(node => {
-			node.depthFirstSearch(array);
-		})
-		return array;
+    // root, right, left
+    array.push(this.name);
+    this.children.forEach(node => {
+      node.depthFirstSearch(array);
+    });
+    return array;
   }
 }
-
-// time: O(v + e)
-// space: O(v)
-//  where v is the number of vertices of the input graph and e is the numbers of edges in the input graph
