@@ -1,30 +1,39 @@
-function maxPathSum(tree) {
-	let maxTotal = tree.value;
-	let sumTotal = findMaxPath(tree, total = 0);
-	return maxTotal > sumTotal ? maxTotal : sumTotal;
-	
-	function findMaxPath(node, total) { 
-		let leftTotal = 0;
-		let rightTotal = 0;
-		if (node.left) {
-			leftTotal = findMaxPath(node.left, total);
-		}
-		if (node.right) {
-			rightTotal = findMaxPath(node.right, total);
-		}
-		if (leftTotal > rightTotal) {
-			total = leftTotal + node.value;
-		} else {
-			total = rightTotal + node.value;
-		}
-		if (leftTotal < 0) leftTotal = 0;
-		if (rightTotal < 0) rightTotal = 0;
-		let sum = leftTotal + rightTotal + node.value;
-		if (sum > maxTotal) maxTotal = sum;
-		return total;
-	}
-}
-
 // time: O(n)
 // space: O(log(n))
 // where n is the number of nodes in the tree
+
+function maxPathSum(tree) {
+  // set a max path sum to tree.value
+  // helper function to find total sum
+    // go to left first and when reach the end, add to total sum
+    // repeat with right
+    // compare the two and add greater to total sum
+    // add both to get max path but check to make sure none are negative
+  let maxSum = tree.value;
+  let totalSum = maxPathSumHelper(tree);
+  return maxSum > totalSum ? maxSum : totalSum;
+
+  function maxPathSumHelper(node) {
+    let leftSum = 0;
+    let rightSum = 0;
+    let total = 0;
+    if (node.left) leftSum = maxPathSumHelper(node.left);
+    if (node.right) rightSum = maxPathSumHelper(node.right);
+    if (leftSum > rightSum) total = leftSum + node.value;
+    else total = rightSum + node.value;
+    if (leftSum < 0) leftSum = 0;
+    if (rightSum < 0) rightSum = 0;
+    let sum = leftSum + rightSum + node.value;
+    if (sum > maxSum) maxSum = sum;
+    return total;
+  }
+
+}
+
+class BinaryTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
