@@ -1,3 +1,34 @@
+// time: O(n)
+// space: O(h)
+// where n is the number of nodes in the tree and h is the height of the tree
+
+function binaryTreeDiameter(tree) {
+  // set maxPath and totalPath
+  // helper function to find values
+    // set a left path and a right path
+      // recursion
+    // add larger one for total + 1
+    // add both for the max path + 1
+  // return whichever is greater - 1
+  let maxPath = 0;
+  let totalPath = binaryTreeDiameterHelper(tree);
+  return maxPath > totalPath ? maxPath - 1 : totalPath - 1;
+
+  function binaryTreeDiameterHelper(node) {
+    let leftPath = 0;
+    let rightPath = 0;
+    let total = 0;
+    if (node.left) leftPath = binaryTreeDiameterHelper(node.left);
+    if (node.right) rightPath = binaryTreeDiameterHelper(node.right);
+    if (leftPath > rightPath) total = leftPath + 1;
+    else total = rightPath + 1;
+    let sum = leftPath + rightPath + 1;
+    if (sum > maxPath) maxPath = sum;
+    return total;
+  }
+
+}
+
 class BinaryTree {
   constructor(value) {
     this.value = value;
@@ -5,31 +36,3 @@ class BinaryTree {
     this.right = null;
   }
 }
-
-function binaryTreeDiameter(tree) {
-	let maxLength = 0;
-  let totalLength = binaryTreeHelper(tree,0);
-	
-  return maxLength > totalLength ? maxLength - 1 : totalLength - 1;
-	
-	function binaryTreeHelper(tree, length) {
-		let leftLength = 0;
-		let rightLength = 0;
-		if (tree.left) {
-			leftLength = binaryTreeHelper(tree.left, length);
-		}
-		if (tree.right) {
-			rightLength = binaryTreeHelper(tree.right, length);
-		}
-		if (leftLength > rightLength) length = leftLength + 1;
-		else length = rightLength + 1;
-		if (leftLength + rightLength + 1 > maxLength) maxLength = leftLength + rightLength + 1;
-		
-		return length;
-	}
-	
-}
-
-// time: O(n)
-// space: O(h)
-// where n is the number of nodes and h is the height of the tree
